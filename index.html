@@ -735,6 +735,41 @@
                 font-size: 0.75rem;
             }
         }
+                /* ===== ARREGLOS: IMÁGENES Y LISTAS JERÁRQUICAS ===== */
+        .img-container {
+            text-align: center;
+            margin: 1.8rem 0;
+        }
+        .img-container img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Mejora la indentación y separación de listas anidadas */
+        .card ul, .info-box ul, .bio-box ul, .pharma-box ul {
+            padding-left: 1.8rem;
+            margin: 0.6rem 0;
+        }
+        .card ul ul, .info-box ul ul {
+            padding-left: 2.2rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.4rem;
+            list-style-type: circle;
+        }
+        .card li, .info-box li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+        /* Para que el título en negrita se vea separado del texto que lo sigue */
+        .card li strong, .info-box li strong {
+            display: inline-block;
+            margin-right: 0.3rem;
+        }
     </style>
 </head>
 <body>
