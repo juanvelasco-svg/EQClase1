@@ -7,17 +7,16 @@
     <style>
         /* ===== VARIABLES Y RESET ===== */
         :root {
-            --upch-gold: #D4AF37;
-            --upch-dark: #1a1a2e;
-            --upch-blue: #16213e;
-            --upch-light: #0f3460;
-            --accent: #e94560;
-            --text: #2c3e50;
+            --upch-gold: #E8B800;      /* Dorado más vivo */
+            --upch-dark: #0B2A3A;       /* Azul marino profundo */
+            --upch-blue: #1A4A5A;       /* Azul verdoso (similar a la imagen) */
+            --upch-light: #2A6A7A;      /* Azul más claro para fondos */
+            --accent: #E94560;          /* Rojo acento (se mantiene) */
+            --text: #1e3c4a;            /* Color de texto oscuro con tono azulado */
             --white: #ffffff;
-            --sand: #f4e9c1;
+            --sand: #f4e9c1;            /* Arena para detalles */
             --shadow: rgba(0, 0, 0, 0.15);
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +25,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #e8f0f2 0%, #c8d8dc 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -34,7 +33,7 @@
 
         /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, var(--upch-dark) 0%, var(--upch-blue) 100%);
+            background: linear-gradient(135deg, var(--upch-dark) 0%, var(--upch-light) 100%);
             color: var(--white);
             padding: 2rem 1.5rem;
             text-align: center;
@@ -72,7 +71,7 @@
 
         /* ===== NAV ===== */
         .nav-container {
-            background: var(--upch-blue);
+            background: var(--upch-dark);
             padding: 0.8rem 1rem;
             position: sticky;
             top: 0;
