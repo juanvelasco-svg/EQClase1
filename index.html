@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPCH - Elementos de Química | Clase 1</title>
+    <style>
+        /* ===== VARIABLES Y RESET ===== */
+        :root {
+            --upch-gold: #D4AF37;
+            --upch-dark: #1a1a2e;
+            --upch-blue: #16213e;
+            --upch-light: #0f3460;
+            --accent: #e94560;
+            --text: #2c3e50;
+            --white: #ffffff;
+            --sand: #f4e9c1;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, var(--upch-dark) 0%, var(--upch-blue) 100%);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 6px 20px var(--shadow);
+            border-bottom: 5px solid var(--upch-gold);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        .logo-upch {
+            width: 120px;
+            height: auto;
+            background: var(--white);
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.2rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            color: var(--upch-gold);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* ===== NAV ===== */
+        .nav-container {
+            background: var(--upch-blue);
+            padding: 0.8rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .nav-btn {
+            background: var(--white);
+            color: var(--upch-dark);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.95rem;
+        }
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== CONTENEDOR ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px var(--shadow);
+            border-left: 6px solid var(--upch-gold);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        h2 {
+            color: var(--upch-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--upch-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 2rem;
+        }
+        h3 {
+            color: var(--upch-light);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* ===== CAJAS DE INFORMACIÓN ===== */
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .bio-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #a8dadc 100%);
+            border-left: 5px solid #17a2b8;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .pharma-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
+            border-left: 5px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .problem-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* ===== TABLAS ===== */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 500px;
+        }
+        th {
+            background: linear-gradient(135deg, var(--upch-blue), var(--upch-light));
+            color: var(--white);
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover td {
+            background: #f8fff0;
+        }
+
+        /* ===== PESTAÑAS ===== */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .tab {
+            background: var(--sand);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* ===== CALCULADORAS ===== */
+        .calculator {
+            background: linear-gradient(135deg, #fff9f5 0%, #fff0e8 100%);
+            border: 3px solid var(--upch-gold);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .calc-title {
+            color: var(--upch-blue);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .calc-input-group {
+            margin: 1rem 0;
+        }
+        .calc-input-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            outline: none;
+            border-color: var(--upch-gold);
+        }
+        .calc-button {
+            background: var(--upch-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .calc-button:hover {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateY(-2px);
+        }
+        .calc-result {
+            background: var(--white);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            display: none;
+        }
+        .calc-result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== FLASHCARDS ===== */
+        .fc-stats {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .fc-stat {
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .fc-stat.good {
+            background: #28a745;
+        }
+        .fc-stat.bad {
+            background: #dc3545;
+        }
+        .fc-stat.pending {
+            background: #6c757d;
+        }
+        .fc-stat.total {
+            background: var(--upch-light);
+        }
+        .fc-progress {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            max-width: 720px;
+            margin: 0 auto 1.5rem;
+        }
+        .fc-progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--upch-gold), var(--accent));
+            transition: width 0.4s;
+        }
+        .flashcard-scene {
+            perspective: 1400px;
+            max-width: 720px;
+            height: 320px;
+            margin: 0 auto 1.5rem;
+        }
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+        .fc-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: auto;
+            box-shadow: 0 8px 24px var(--shadow);
+            font-size: 1.15rem;
+        }
+        .fc-front {
+            background: linear-gradient(135deg, var(--upch-blue), var(--upch-light));
+            color: #fff;
+            border: 3px solid var(--upch-gold);
+        }
+        .fc-back {
+            background: linear-gradient(135deg, #fff9e6, var(--sand));
+            color: var(--text);
+            border: 3px solid var(--upch-gold);
+            transform: rotateY(180deg);
+        }
+        .fc-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 800;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .fc-hint {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .fc-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .fc-btn {
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #fff;
+        }
+        .fc-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .fc-btn.good {
+            background: #28a745;
+        }
+        .fc-btn.bad {
+            background: #dc3545;
+        }
+        .fc-btn:not(:disabled):hover {
+            transform: translateY(-3px);
+        }
+        .fc-link {
+            background: none;
+            border: none;
+            color: #6c757d;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== MAPA CONCEPTUAL ===== */
+        .map-container {
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+        .map-tree,
+        .map-tree ul {
+            list-style: none;
+        }
+        .map-tree ul {
+            display: none;
+            padding-left: 1.6rem;
+            margin-top: 0.6rem;
+            border-left: 3px solid var(--upch-gold);
+        }
+        .map-tree li.open>ul {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .map-tree li {
+            margin: 0.4rem 0;
+        }
+        .map-node {
+            display: inline-block;
+            background: var(--upch-blue);
+            color: #fff;
+            padding: 0.6rem 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .map-node:hover {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateX(4px);
+        }
+        .map-node.root {
+            background: var(--accent);
+            font-size: 1.15rem;
+        }
+        .map-node.branch {
+            background: var(--upch-light);
+        }
+        .map-leaf {
+            display: inline-block;
+            background: var(--sand);
+            color: var(--text);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            border: 2px solid var(--upch-gold);
+        }
+        li.has-children>.map-node::before {
+            content: '▶ ';
+            font-size: 0.8em;
+        }
+        li.has-children.open>.map-node::before {
+            content: '▼ ';
+            font-size: 0.8em;
+        }
+
+        /* ===== GLOSARIO ===== */
+        .glossary-term {
+            background: var(--white);
+            border: 2px solid var(--upch-gold);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .glossary-term:hover {
+            background: #fff9e6;
+            transform: translateX(5px);
+        }
+        .glossary-definition {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--upch-gold);
+        }
+        .glossary-definition.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* ===== ERRORES ===== */
+        .error-card {
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffb3b3 100%);
+            border-left: 5px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .error-title {
+            color: #dc3545;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .correction {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ===== QUIZ ===== */
+        .quiz-container {
+            background: linear-gradient(135deg, var(--upch-blue) 0%, var(--upch-light) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .quiz-option {
+            background: var(--white);
+            color: var(--text);
+            border: 3px solid transparent;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .quiz-option:hover {
+            border-color: var(--upch-gold);
+            transform: translateY(-3px);
+        }
+        .quiz-option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #2e7d32;
+        }
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #c62828;
+        }
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .quiz-progress span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--upch-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            margin-top: 3rem;
+            border-top: 5px solid var(--upch-gold);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .logo-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo-upch {
+                width: 80px;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .nav-buttons {
+                gap: 0.4rem;
+            }
+            .nav-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.8rem;
+            }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.5rem;
+            }
+            .tab {
+                flex-shrink: 0;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            .flashcard-scene {
+                height: 360px;
+            }
+            .fc-face {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .fc-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            .fc-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            header {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+            .nav-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo-upch.png" alt="Logo UPCH" class="logo-upch" />
+            <div>
+                <h1>Universidad Peruana Cayetano Heredia</h1>
+                <p class="subtitle">Facultad de Ciencias de la Salud</p>
+                <p class="subtitle">Elementos de Química · Clase 1: Átomos, Elementos y Tabla Periódica</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-container">
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('inicio',this)">🏠 Inicio</button>
+            <button class="nav-btn" onclick="showSection('conceptos',this)">📚 Conceptos</button>
+            <button class="nav-btn" onclick="showSection('mapa',this)">🗺️ Mapa</button>
+            <button class="nav-btn" onclick="showSection('flashcards',this)">🃏 Flashcards</button>
+            <button class="nav-btn" onclick="showSection('herramientas',this)">🧮 Herramientas</button>
+            <button class="nav-btn" onclick="showSection('aplicaciones',this)">🏥 Aplicaciones</button>
+            <button class="nav-btn" onclick="showSection('mnemotecnias',this)">🧠 Nemotecnias</button>
+            <button class="nav-btn" onclick="showSection('glosario',this)">📖 Glosario</button>
+            <button class="nav-btn" onclick="showSection('errores',this)">⚠️ Errores</button>
+            <button class="nav-btn" onclick="showSection('bibliografia',this)">📚 Bibliografía</button>
+            <button class="nav-btn" onclick="showSection('quiz',this)">🎯 Quiz</button>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ==================== INICIO ==================== -->
+        <section id="inicio" class="section active">
+            <div class="card">
+                <h2>🎯 Objetivos de la Clase</h2>
+                <div class="info-box">
+                    <ul style="font-size:1.1rem; line-height:2;">
+                        <li>✓ Comprender qué es la química y su importancia en ciencias de la salud</li>
+                        <li>✓ Explicar el modelo atómico moderno y sus principios fundamentales</li>
+                        <li>✓ Identificar las partículas subatómicas, número atómico y número de masa</li>
+                        <li>✓ Definir isótopos y calcular la masa atómica promedio</li>
+                        <li>✓ Conocer la tabla periódica y clasificar los elementos</li>
+                    </ul>
+                </div>
+                <h3>🩺 Relevancia para las Ciencias de la Salud</h3>
+                <div class="bio-box">
+                    <strong>¿Por qué es fundamental este tema?</strong><br>
+                    La química es la base de los procesos biológicos. Comprender la estructura de la materia permite:
+                    <ul style="margin-top:0.8rem;">
+                        <li>• Entender el metabolismo celular y las funciones vitales</li>
+                        <li>• Interpretar análisis clínicos (electrolitos, gases arteriales, etc.)</li>
+                        <li>• Conocer la acción de fármacos y su interacción con el organismo</li>
+                        <li>• Identificar elementos esenciales para la salud (Ca, Fe, Na, K, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONCEPTOS ==================== -->
+        <section id="conceptos" class="section">
+            <div class="card">
+                <h2>📚 Conceptos Fundamentales</h2>
+                <div id="conceptos-tabs" class="tab-group">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('conceptos-tabs','sub-quimica',this)">🧪 Química y Materia</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-modelo',this)">⚛️ Modelo Atómico</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-particulas',this)">🔬 Partículas y Masa</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-elementos',this)">📋 Elementos y Tabla</button>
+                    </div>
+
+                    <!-- Química y Materia -->
+                    <div id="sub-quimica" class="tab-content active">
+                        <h3>¿Qué es la Química?</h3>
+                        <div class="info-box">
+                            La <strong>química</strong> es la ciencia natural que estudia la composición, estructura y propiedades de la materia, así como las transformaciones que experimenta y su relación con la energía.
+                        </div>
+                        <p><strong>Aportes de la química a la salud:</strong></p>
+                        <ul>
+                            <li>• <strong>Bioquímica:</strong> comprensión de los procesos químicos en los seres vivos.</li>
+                            <li>• <strong>Fabricación de medicamentos:</strong> diseño y síntesis de fármacos.</li>
+                            <li>• <strong>Diagnóstico médico:</strong> análisis de fluidos corporales (sangre, orina).</li>
+                            <li>• <strong>Materiales médicos:</strong> guantes, catéteres, jeringas, etc.</li>
+                            <li>• <strong>Prótesis:</strong> desarrollo de materiales biocompatibles (titanio, polímeros).</li>
+                        </ul>
+                        <div class="bio-box">
+                            <strong>Ejemplo clínico:</strong> La medición de electrolitos (Na⁺, K⁺, Cl⁻) en sangre se basa en métodos químicos y es crucial en emergencias.
+                        </div>
+                    </div>
+
+                    <!-- Modelo Atómico Moderno -->
+                    <div id="sub-modelo" class="tab-content">
+                        <h3>Modelo Atómico Moderno (Mecánico-Cuántico)</h3>
+                        <p>Se basa en principios matemáticos que describen el comportamiento del electrón y considera al átomo como un sistema energético.</p>
+                        <h4>Principios fundamentales:</h4>
+                        <ul>
+                            <li><strong>Niveles estacionarios de energía (Bohr):</strong> los electrones giran en regiones energéticas sin perder ni ganar energía. Si saltan entre niveles, emiten o absorben fotones.</li>
+                            <li><strong>Dualidad de la materia (De Broglie):</strong> toda partícula en movimiento posee propiedades de onda y partícula. Para electrones es significativo.</li>
+                            <li><strong>Principio de incertidumbre (Heisenberg):</strong> no se puede conocer simultáneamente la posición y velocidad exacta del electrón.</li>
+                        </ul>
+                        <h4>Ecuación de Schrödinger y orbitales</h4>
+                        <div class="info-box">
+                            Schrödinger propuso que los electrones no giran en órbitas fijas, sino en <strong>orbitales</strong>, regiones del espacio con alta probabilidad de encontrar al electrón. Los orbitales se describen mediante <strong>números cuánticos</strong>:
+                            <ul>
+                                <li><strong>n</strong> (principal): tamaño y nivel de energía (1,2,3,...).</li>
+                                <li><strong>l</strong> (secundario): forma del orbital (0... n-1).</li>
+                                <li><strong>m<sub>l</sub></strong> (magnético): orientación (-l ... +l).</li>
+                                <li><strong>m<sub>s</sub></strong> (spin): rotación del electrón (-½, +½).</li>
+                            </ul>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Orbitales atómicos:</strong> s (esférico), p (mancuerna), d y f. Cada orbital alberga como máximo 2 electrones (con spines opuestos).
+                        </div>
+                    </div>
+
+                    <!-- Partículas y Masa -->
+                    <div id="sub-particulas" class="tab-content">
+                        <h3>Partículas Subatómicas</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <tr><th>Partícula</th><th>Símbolo</th><th>Carga</th><th>Masa (uma)</th><th>Ubicación</th></tr>
+                                <tr><td>Protón</td><td>p⁺</td><td>+1</td><td>≈1</td><td>Núcleo</td></tr>
+                                <tr><td>Neutrón</td><td>n⁰</td><td>0</td><td>≈1</td><td>Núcleo</td></tr>
+                                <tr><td>Electrón</td><td>e⁻</td><td>-1</td><td>≈0 (1/1836)</td><td>Orbitales</td></tr>
+                            </table>
+                        </div>
+                        <h3>Número Atómico (Z) y Número de Masa (A)</h3>
+                        <div class="info-box">
+                            <strong>Z = número de protones</strong> (identifica al elemento).<br>
+                            <strong>A = Z + neutrones</strong> (número total de partículas en el núcleo).<br>
+                            En un átomo neutro: <strong>Z = electrones</strong>.
+                        </div>
+                        <h3>Isótopos</h3>
+                        <p>Átomos con igual número de protones (Z) pero diferente número de neutrones y, por tanto, distinto número de masa (A).</p>
+                        <div class="example">
+                            <strong>Ejemplo:</strong> Carbono-12 (⁶C¹²) y Carbono-14 (⁶C¹⁴) son isótopos del carbono.
+                        </div>
+                        <h3>Masa Atómica Promedio</h3>
+                        <div class="bio-box">
+                            Es el promedio ponderado de las masas de los isótopos naturales, según su abundancia relativa.<br>
+                            <strong>Fórmula:</strong> Masa promedio = Σ (masa<sub>i</sub> × abundancia<sub>i</sub>) / 100
+                        </div>
+                    </div>
+
+                    <!-- Elementos y Tabla Periódica -->
+                    <div id="sub-elementos" class="tab-content">
+                        <h3>Elementos Químicos</h3>
+                        <p>Un <strong>elemento</strong> es una sustancia pura formada por átomos con el mismo número de protones (Z). Se representa mediante un <strong>símbolo</strong> (ej. H, Na, Fe).</p>
+                        <h4>Clasificación de los elementos según sus propiedades:</h4>
+                        <ul>
+                            <li><strong>Metales:</strong> buenos conductores, maleables, dúctiles, sólidos (excepto Hg), óxidos básicos.</li>
+                            <li><strong>No metales:</strong> malos conductores, quebradizos, pueden ser sólidos, líquidos o gases, óxidos ácidos.</li>
+                            <li><strong>Metaloides:</strong> propiedades intermedias, semiconductores (ej. Si, Ge).</li>
+                            <li><strong>Gases nobles:</strong> muy estables, no reactivos (He, Ne, Ar, etc.).</li>
+                        </ul>
+                        <div class="table-responsive">
+                            <table>
+                                <tr><th>Grupo</th><th>Características</th><th>Ejemplos</th></tr>
+                                <tr><td>Metales</td><td>Conductores, maleables, óxidos básicos</td><td>Na, Fe, Cu, Au, Ag</td></tr>
+                                <tr><td>No metales</td><td>Aislantes, óxidos ácidos</td><td>O, N, Cl, S</td></tr>
+                                <tr><td>Metaloides</td><td>Semiconductores</td><td>Si, Ge, As, Sb</td></tr>
+                                <tr><td>Gases nobles</td><td>Muy estables, inertes</td><td>He, Ne, Ar, Kr</td></tr>
+                            </table>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Tabla Periódica:</strong> organiza los elementos por Z creciente y agrupa aquellos con propiedades similares en columnas (grupos) y filas (períodos).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MAPA CONCEPTUAL ==================== -->
+        <section id="mapa" class="section">
+            <div class="card">
+                <h2>🗺️ Mapa Conceptual Interactivo</h2>
+                <p style="margin-bottom:1rem;">Haz <strong>clic</strong> en cada nodo para desplegar u ocultar sus ramas.</p>
+                <div class="map-container">
+                    <ul class="map-tree">
+                        <li class="has-children">
+                            <div class="map-node root" onclick="toggleMap(this)">🧪 Química, Átomos y Elementos</div>
+                            <ul>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">🔬 Química y Materia</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Estudio de la materia y energía</span></li>
+                                        <li><span class="map-leaf">Método científico</span></li>
+                                        <li><span class="map-leaf">Aportes a la salud: diagnóstico, fármacos, prótesis</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">⚛️ Modelo Atómico Moderno</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Niveles de energía (Bohr)</span></li>
+                                        <li><span class="map-leaf">Dualidad onda-partícula (De Broglie)</span></li>
+                                        <li><span class="map-leaf">Principio de incertidumbre (Heisenberg)</span></li>
+                                        <li><span class="map-leaf">Ecuación de Schrödinger y orbitales</span></li>
+                                        <li><span class="map-leaf">Números cuánticos (n, l, m, s)</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">🔬 Partículas Subatómicas</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Protón (p⁺), Neutrón (n⁰), Electrón (e⁻)</span></li>
+                                        <li><span class="map-leaf">Número atómico (Z) = p⁺</span></li>
+                                        <li><span class="map-leaf">Número de masa (A) = p⁺ + n⁰</span></li>
+                                        <li><span class="map-leaf">Isótopos: mismo Z, distinto A</span></li>
+                                        <li><span class="map-leaf">Masa atómica promedio</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">📋 Elementos y Tabla Periódica</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Elemento: sustancia con un solo tipo de átomo</span></li>
+                                        <li><span class="map-leaf">Símbolos químicos</span></li>
+                                        <li><span class="map-leaf">Clasificación: metales, no metales, metaloides, gases nobles</span></li>
+                                        <li><span class="map-leaf">Tabla periódica: grupos y períodos</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FLASHCARDS ==================== -->
+        <section id="flashcards" class="section">
+            <div class="card">
+                <h2>🃏 Flashcards de Estudio</h2>
+                <p>Haz <strong>clic</strong> en la tarjeta para voltearla y ver la respuesta. Luego califícate con honestidad.</p>
+
+                <div class="fc-stats">
+                    <span class="fc-stat good">✅ Buenas: <span id="fc-good">0</span></span>
+                    <span class="fc-stat bad">❌ Malas: <span id="fc-bad">0</span></span>
+                    <span class="fc-stat pending">⏳ Pendientes: <span id="fc-left">0</span></span>
+                    <span class="fc-stat total">📈 Historial: <span id="fc-hist">0 ✓ / 0 ✗</span></span>
+                </div>
+                <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+
+                <div class="flashcard-scene" id="fc-scene">
+                    <div class="flashcard" id="fc-card" onclick="flipCard()">
+                        <div class="fc-face fc-front">
+                            <div class="fc-label">PREGUNTA</div>
+                            <div id="fc-question"></div>
+                            <span class="fc-hint">Clic para voltear ✨</span>
+                        </div>
+                        <div class="fc-face fc-back">
+                            <div class="fc-label">RESPUESTA</div>
+                            <div id="fc-answer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fc-controls" id="fc-controls">
+                    <button class="fc-btn good" id="btn-fc-good" onclick="gradeCard(true)" disabled>✅ La sabía</button>
+                    <button class="fc-btn bad" id="btn-fc-bad" onclick="gradeCard(false)" disabled>❌ No la sabía</button>
+                </div>
+
+                <div id="fc-summary" class="calc-result" style="max-width:720px;margin:1rem auto;"></div>
+                <div style="text-align:center;">
+                    <button class="calc-button" onclick="resetFlashcards()">🔄 Reiniciar Flashcards</button><br>
+                    <button class="fc-link" onclick="borrarHistorial()">Borrar historial acumulado</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== HERRAMIENTAS ==================== -->
+        <section id="herramientas" class="section">
+            <div class="card">
+                <h2>🧮 Herramientas Interactivas</h2>
+                <div id="herramientas-tabs" class="tab-group">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('herramientas-tabs','calc-masa',this)">⚖️ Masa Atómica Promedio</button>
+                        <button class="tab" onclick="showTab('herramientas-tabs','calc-isotopos',this)">🔍 Isótopos y Z/A</button>
+                        <button class="tab" onclick="showTab('herramientas-tabs','buscador-elemento',this)">🔎 Buscador de Elementos</button>
+                    </div>
+
+                    <!-- Calculadora de masa atómica promedio -->
+                    <div id="calc-masa" class="tab-content active">
+                        <div class="calculator">
+                            <div class="calc-title">⚖️ Calculadora de Masa Atómica Promedio</div>
+                            <p>Ingresa los datos de dos isótopos (masa y abundancia en %):</p>
+                            <div class="calc-input-group">
+                                <label>Masa isótopo 1 (uma):</label>
+                                <input type="number" id="masa1" step="0.0001" placeholder="ej. 34.9689" />
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Abundancia isótopo 1 (%):</label>
+                                <input type="number" id="abund1" step="0.01" placeholder="ej. 75.78" />
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Masa isótopo 2 (uma):</label>
+                                <input type="number" id="masa2" step="0.0001" placeholder="ej. 36.9659" />
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Abundancia isótopo 2 (%):</label>
+                                <input type="number" id="abund2" step="0.01" placeholder="ej. 24.22" />
+                            </div>
+                            <button class="calc-button" onclick="calcularMasaPromedio()">Calcular masa promedio</button>
+                            <div id="resultado-masa" class="calc-result"></div>
+                            <div class="tip-box" style="margin-top:1.5rem;">
+                                <strong>Ejemplo:</strong> Cloro: ⁰³⁵Cl (34.9689 uma, 75.78%) y ⁰³⁷Cl (36.9659 uma, 24.22%) → masa promedio ≈ 35.45 uma.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Isótopos y Z/A -->
+                    <div id="calc-isotopos" class="tab-content">
+                        <div class="calculator">
+                            <div class="calc-title">🔍 Determinar protones, neutrones y electrones</div>
+                            <div class="calc-input-group">
+                                <label>Número atómico (Z):</label>
+                                <input type="number" id="z-isotopo" min="1" max="118" placeholder="ej. 6" />
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Número de masa (A):</label>
+                                <input type="number" id="a-isotopo" min="1" placeholder="ej. 14" />
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Carga (si es ion, ej. +1, -1, 0 para neutro):</label>
+                                <input type="number" id="carga-isotopo" step="1" placeholder="ej. 0" value="0" />
+                            </div>
+                            <button class="calc-button" onclick="calcularParticulas()">Calcular</button>
+                            <div id="resultado-particulas" class="calc-result"></div>
+                        </div>
+                    </div>
+
+                    <!-- Buscador de Elementos -->
+                    <div id="buscador-elemento" class="tab-content">
+                        <div class="calculator">
+                            <div class="calc-title">🔎 Buscador de Elementos por Número Atómico</div>
+                            <div class="calc-input-group">
+                                <label>Ingresa Z (1-118):</label>
+                                <input type="number" id="z-buscar" min="1" max="118" placeholder="ej. 26" />
+                            </div>
+                            <button class="calc-button" onclick="buscarElemento()">Buscar</button>
+                            <div id="resultado-elemento" class="calc-result"></div>
+                            <div class="info-box" style="margin-top:1.5rem;">
+                                <strong>Datos de tabla periódica:</strong> se mostrará símbolo, nombre y clasificación (metal, no metal, etc.).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== APLICACIONES ==================== -->
+        <section id="aplicaciones" class="section">
+            <div class="card">
+                <h2>🏥 Aplicaciones en Ciencias de la Salud</h2>
+                <p>La química de los átomos y elementos tiene múltiples usos en el ámbito sanitario. A continuación, algunos ejemplos:</p>
+
+                <h3>🔬 Isótopos en Medicina</h3>
+                <div class="bio-box">
+                    <ul>
+                        <li><strong>Yodo-131 (¹³¹I):</strong> se usa en el diagnóstico y tratamiento de trastornos tiroideos (hipertiroidismo, cáncer de tiroides). Emite radiación beta que destruye células tiroideas.</li>
+                        <li><strong>Tecnecio-99m (⁹⁹ᵐTc):</strong> el isótopo más usado en medicina nuclear para obtener imágenes de órganos (corazón, cerebro, huesos). Emite rayos gamma.</li>
+                        <li><strong>Carbono-14 (¹⁴C):</strong> utilizado en estudios metabólicos (test de aliento para Helicobacter pylori).</li>
+                    </ul>
+                </div>
+
+                <h3>🧪 Elementos Esenciales para el Cuerpo Humano</h3>
+                <div class="table-responsive">
+                    <table>
+                        <tr><th>Elemento</th><th>Símbolo</th><th>Función principal</th><th>Deficiencia</th></tr>
+                        <tr><td>Calcio</td><td>Ca</td><td>Formación de huesos, contracción muscular, coagulación</td><td>Osteoporosis, tetania</td></tr>
+                        <tr><td>Hierro</td><td>Fe</td><td>Transporte de oxígeno (hemoglobina)</td><td>Anemia ferropénica</td></tr>
+                        <tr><td>Sodio</td><td>Na</td><td>Equilibrio osmótico, impulso nervioso</td><td>Hiponatremia</td></tr>
+                        <tr><td>Potasio</td><td>K</td><td>Función muscular y cardíaca</td><td>Hipopotasemia</td></tr>
+                        <tr><td>Yodo</td><td>I</td><td>Síntesis de hormonas tiroideas</td><td>Bocio, hipotiroidismo</td></tr>
+                    </table>
+                </div>
+
+                <h3>💊 Fármacos y Estructura Química</h3>
+                <div class="pharma-box">
+                    La actividad biológica de un fármaco depende de su estructura molecular. Por ejemplo, el <strong>litio (Li)</strong> se usa como estabilizador del estado de ánimo, el <strong>platino (Pt)</strong> en quimioterápicos (cisplatino) y el <strong>bismuto (Bi)</strong> en antiácidos.
+                </div>
+
+                <h3>🧬 Prótesis y Materiales Biocompatibles</h3>
+                <div class="tip-box">
+                    <strong>Titanio (Ti):</strong> metal biocompatible usado en implantes dentales y prótesis articulares porque no es rechazado por el organismo y se integra al hueso (osteointegración).
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MNEMOTECNIAS ==================== -->
+        <section id="mnemotecnias" class="section">
+            <div class="card">
+                <h2>🧠 Nemotecnias y Reglas Mnemotécnicas</h2>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">🎵 "La canción del átomo"</div>
+                    <p style="font-style:italic;line-height:2;">
+                        <strong>"Z son los protones, A es masa total,</strong><br>
+                        <strong>neutrones se restan, y electrones son Z en neutral."</strong>
+                    </p>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">📊 "Número estérico = enlaces + pares libres"</div>
+                    <div class="info-box">
+                        Para determinar la hibridación (aunque este tema es de química orgánica, aplica a heteroátomos):<br>
+                        <strong>4 → sp³, 3 → sp², 2 → sp</strong>
+                    </div>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">🔬 "Metales y no metales"</div>
+                    <div class="tip-box">
+                        <strong>Metales:</strong> "MALEABLES, DÚCTILES, BUENOS CONDUCTORES"<br>
+                        <strong>No metales:</strong> "QUEBRADIZOS, AISLANTES, ÓXIDOS ÁCIDOS"<br>
+                        <strong>Metaloides:</strong> "SEMICONDUCTORES, INTERMEDIOS"
+                    </div>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">🧩 "Gases nobles: estables e inertes"</div>
+                    <p><strong>He, Ne, Ar, Kr, Xe, Rn</strong> → "Helio, Neón, Argón, Kriptón, Xenón, Radón"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GLOSARIO ==================== -->
+        <section id="glosario" class="section">
+            <div class="card">
+                <h2>📖 Glosario Interactivo</h2>
+                <p style="margin-bottom:1.5rem;">Haz clic en cada término para ver su definición:</p>
+
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Átomo</strong><div class="glossary-definition">Unidad más pequeña de un elemento que conserva sus propiedades químicas. Está compuesto por protones, neutrones y electrones.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Número atómico (Z)</strong><div class="glossary-definition">Número de protones en el núcleo de un átomo. Determina la identidad del elemento.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Número de masa (A)</strong><div class="glossary-definition">Suma de protones y neutrones en el núcleo de un átomo. Se aproxima a la masa atómica en uma.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Isótopo</strong><div class="glossary-definition">Átomos del mismo elemento (mismo Z) con diferente número de neutrones y, por tanto, diferente A.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Masa atómica promedio</strong><div class="glossary-definition">Promedio ponderado de las masas de los isótopos naturales de un elemento, según su abundancia relativa.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Elemento químico</strong><div class="glossary-definition">Sustancia pura formada por átomos con el mismo número de protones. No puede descomponerse en sustancias más simples por reacciones químicas.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Tabla periódica</strong><div class="glossary-definition">Organización de los elementos por número atómico creciente, agrupados en filas (períodos) y columnas (grupos) con propiedades similares.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Metal</strong><div class="glossary-definition">Elemento con alta conductividad térmica y eléctrica, maleable, dúctil, generalmente sólido y con óxidos básicos.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>No metal</strong><div class="glossary-definition">Elemento con baja conductividad, quebradizo en estado sólido, puede ser gas o líquido, y sus óxidos son ácidos.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Gas noble</strong><div class="glossary-definition">Elemento del grupo 18, muy estable y poco reactivo debido a su capa de valencia completa (octeto).</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Orbital atómico</strong><div class="glossary-definition">Región del espacio alrededor del núcleo donde hay alta probabilidad de encontrar un electrón. Descrito por números cuánticos.</div></div>
+            </div>
+        </section>
+
+        <!-- ==================== ERRORES COMUNES ==================== -->
+        <section id="errores" class="section">
+            <div class="card">
+                <h2>⚠️ Errores Comunes de Estudiantes</h2>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 1: Confundir número atómico (Z) con número de masa (A)</div>
+                    <p><strong>Error:</strong> "El número atómico es la masa total del átomo."</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> Z es el número de protones (identifica al elemento), mientras que A es la suma de protones y neutrones (masa aproximada).</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 2: Pensar que todos los isótopos son inestables</div>
+                    <p><strong>Error:</strong> "Todos los isótopos son radiactivos."</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> Solo algunos isótopos son radiactivos; la mayoría son estables (ej. ¹²C, ¹⁶O).</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 3: Olvidar que el número de electrones en un átomo neutro es igual a Z</div>
+                    <p><strong>Error:</strong> "El número de electrones es siempre igual al número de neutrones."</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> En un átomo neutro, electrones = protones (Z). Solo en iones cambia.</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 4: Confundir metaloide con metal</div>
+                    <p><strong>Error:</strong> "El silicio es un metal."</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> El silicio (Si) es un metaloide (semiconductor). Los metaloides tienen propiedades intermedias.</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 5: No diferenciar entre masa atómica y número de masa</div>
+                    <p><strong>Error:</strong> "La masa atómica es siempre un número entero."</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> La masa atómica es un promedio ponderado y puede tener decimales (ej. Cl = 35.45 uma). El número de masa (A) es entero.</div>
+                </div>
+
+                <div class="tip-box" style="margin-top:2rem;">
+                    <strong>💡 Consejo:</strong> Repasa los conceptos usando las flashcards y el mapa conceptual. Practica con los ejercicios de la calculadora de masa atómica.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BIBLIOGRAFÍA ==================== -->
+        <section id="bibliografia" class="section">
+            <div class="card">
+                <h2>📚 Bibliografía Universitaria</h2>
+
+                <h3>Libros de Química General</h3>
+                <div class="info-box">
+                    <strong>1. Chang, R., & Goldsby, K. A. (2017).</strong> <em>Química</em> (12ª ed.). McGraw-Hill.<br>
+                    • <strong>Capítulo 2:</strong> Átomos, moléculas y iones (páginas 38-75).<br>
+                    • <strong>Capítulo 3:</strong> Estequiometría (páginas 76-115).<br>
+                    • Incluye tabla periódica y propiedades de los elementos.
+                </div>
+                <div class="info-box">
+                    <strong>2. Brown, T. L., LeMay, H. E., Bursten, B. E., & Murphy, C. J. (2018).</strong> <em>Química: La Ciencia Central</em> (13ª ed.). Pearson.<br>
+                    • <strong>Capítulo 2:</strong> Átomos y elementos (páginas 40-79).<br>
+                    • <strong>Capítulo 6:</strong> Estructura electrónica de los átomos (páginas 220-265).
+                </div>
+                <div class="info-box">
+                    <strong>3. Petrucci, R. H., Herring, F. G., Madura, J. D., & Bissonnette, C. (2017).</strong> <em>Química General: Principios y Aplicaciones Modernas</em> (11ª ed.). Pearson.<br>
+                    • <strong>Capítulo 1:</strong> La materia y su medida (páginas 2-29).<br>
+                    • <strong>Capítulo 2:</strong> Átomos y la teoría atómica (páginas 30-65).
+                </div>
+
+                <h3>Recursos en Línea</h3>
+                <div class="bio-box">
+                    <strong>Tabla Periódica Interactiva:</strong> <a href="https://ptable.com" target="_blank" style="color:var(--upch-blue);">https://ptable.com</a> (idioma español)<br>
+                    <strong>PubChem:</strong> <a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank" style="color:var(--upch-blue);">https://pubchem.ncbi.nlm.nih.gov</a> (base de datos de compuestos químicos)<br>
+                    <strong>Khan Academy - Química:</strong> <a href="https://es.khanacademy.org/science/chemistry" target="_blank" style="color:var(--upch-blue);">https://es.khanacademy.org</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== QUIZ ==================== -->
+        <section id="quiz" class="section">
+            <div class="card">
+                <h2>🎯 Quiz de Autoevaluación</h2>
+                <p>Se mostrarán <strong>5 preguntas al azar</strong> de un total de 15. Al finalizar, podrás cargar una nueva ronda.</p>
+                <div id="quiz-container"></div>
+                <div style="text-align:center;margin-top:2rem;">
+                    <button class="calc-button" onclick="cargarQuiz()">🔄 Nueva ronda</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p style="font-size:1.2rem;margin-bottom:0.5rem;">🎓 Universidad Peruana Cayetano Heredia</p>
+        <p>Facultad de Ciencias de la Salud · Curso: Elementos de Química</p>
+        <p style="margin-top:0.5rem;font-style:italic;">"La química es el puente entre la materia y la vida"</p>
+        <p style="margin-top:2rem;font-size:0.9rem;">© 2026 · Material educativo para estudiantes de ciencias de la salud</p>
+    </footer>
+
+    <script>
+        // ============================================================
+        //  NAVEGACIÓN
+        // ============================================================
+        function showSection(sectionId, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showTab(groupId, tabId, btn) {
+            const group = document.getElementById(groupId);
+            group.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (btn) btn.classList.add('active');
+        }
+
+        // ============================================================
+        //  MAPA CONCEPTUAL
+        // ============================================================
+        function toggleMap(node) {
+            node.parentElement.classList.toggle('open');
+        }
+
+        // ============================================================
+        //  GLOSARIO
+        // ============================================================
+        function toggleDefinition(el) {
+            const def = el.querySelector('.glossary-definition');
+            def.classList.toggle('show');
+            el.style.background = def.classList.contains('show') ? '#fff9e6' : 'var(--white)';
+        }
+
+        // ============================================================
+        //  FLASHCARDS
+        // ============================================================
+        const flashcards = [
+            { q: '¿Qué es la química?', a: 'Ciencia que estudia la materia, sus propiedades, estructura y transformaciones, así como su relación con la energía.' },
+            { q: '¿Cuáles son las partículas subatómicas fundamentales?', a: 'Protón (p⁺), neutrón (n⁰) y electrón (e⁻).' },
+            { q: '¿Qué indica el número atómico (Z)?', a: 'El número de protones en el núcleo de un átomo; identifica al elemento.' },
+            { q: '¿Qué es el número de masa (A)?', a: 'La suma de protones y neutrones en el núcleo (A = Z + n⁰).' },
+            { q: '¿Qué son los isótopos?', a: 'Átomos del mismo elemento (mismo Z) con diferente número de neutrones (distinto A).' },
+            { q: '¿Cómo se calcula la masa atómica promedio?', a: 'Promedio ponderado de las masas de los isótopos naturales según su abundancia relativa.' },
+            { q: '¿Qué es un elemento químico?', a: 'Sustancia pura formada por átomos con el mismo número de protones; no se descompone en sustancias más simples por reacciones químicas.' },
+            { q: '¿Cuáles son las principales clases de elementos en la tabla periódica?', a: 'Metales, no metales, metaloides y gases nobles.' },
+            { q: 'Propiedades de los metales.', a: 'Buenos conductores, maleables, dúctiles, sólidos (excepto Hg), óxidos básicos.' },
+            { q: 'Propiedades de los no metales.', a: 'Malos conductores, quebradizos en sólido, pueden ser gas/líquido, óxidos ácidos.' },
+            { q: '¿Qué son los metaloides?', a: 'Elementos con propiedades intermedias entre metales y no metales, semiconductores (Si, Ge, As).' },
+            { q: 'Características de los gases nobles.', a: 'Muy estables, capa de valencia completa, poco reactivos (He, Ne, Ar, Kr, Xe, Rn).' },
+            { q: '¿Quién propuso los niveles estacionarios de energía?', a: 'Niels Bohr.' },
+            { q: '¿Qué dice el principio de incertidumbre de Heisenberg?', a: 'No se puede conocer simultáneamente la posición y velocidad exacta del electrón.' },
+            { q: '¿Qué son los números cuánticos?', a: 'Valores que describen las propiedades de los electrones en un átomo: n (tamaño), l (forma), m_l (orientación) y m_s (spin).' },
+            { q: '¿Cuántos electrones caben en un orbital?', a: 'Máximo 2 electrones, con spines opuestos (m_s = +½ y -½).' },
+            { q: '¿Qué aplicaciones tienen los isótopos en medicina?', a: 'Diagnóstico y tratamiento (ej. I-131 para tiroides, Tc-99m para imágenes, C-14 en pruebas metabólicas).' },
+            { q: '¿Cuál es el elemento más abundante en el cuerpo humano?', a: 'Oxígeno (O), seguido de carbono (C), hidrógeno (H) y nitrógeno (N).' },
+            { q: '¿Qué es la tabla periódica?', a: 'Organización de los elementos por Z creciente, con filas (períodos) y columnas (grupos) que agrupan elementos con propiedades similares.' },
+            { q: '¿Cuál es la diferencia entre un átomo neutro y un ion?', a: 'Un átomo neutro tiene igual número de protones y electrones; un ion tiene carga porque ganó o perdió electrones.' }
+        ];
+
+        let fcIndex = 0,
+            fcFlipped = false,
+            fcGood = 0,
+            fcBad = 0,
+            fcDone = false;
+
+        function fcUpdateStats() {
+            document.getElementById('fc-good').textContent = fcGood;
+            document.getElementById('fc-bad').textContent = fcBad;
+            document.getElementById('fc-left').textContent = Math.max(0, flashcards.length - fcIndex);
+            const tg = parseInt(localStorage.getItem('fcTotalGood') || '0', 10);
+            const tb = parseInt(localStorage.getItem('fcTotalBad') || '0', 10);
+            document.getElementById('fc-hist').textContent = tg + ' ✓ / ' + tb + ' ✗';
+            document.getElementById('fc-bar').style.width = (fcIndex / flashcards.length * 100) + '%';
+        }
+
+        function fcRenderCard() {
+            const card = document.getElementById('fc-card');
+            card.classList.remove('flipped');
+            fcFlipped = false;
+            document.getElementById('fc-question').textContent = flashcards[fcIndex].q;
+            document.getElementById('fc-answer').textContent = flashcards[fcIndex].a;
+            document.getElementById('btn-fc-good').disabled = true;
+            document.getElementById('btn-fc-bad').disabled = true;
+            fcUpdateStats();
+        }
+
+        function flipCard() {
+            if (fcDone) return;
+            const card = document.getElementById('fc-card');
+            card.classList.toggle('flipped');
+            fcFlipped = card.classList.contains('flipped');
+            document.getElementById('btn-fc-good').disabled = !fcFlipped;
+            document.getElementById('btn-fc-bad').disabled = !fcFlipped;
+        }
+
+        function gradeCard(wasGood) {
+            if (!fcFlipped || fcDone) return;
+            if (wasGood) {
+                fcGood++;
+                localStorage.setItem('fcTotalGood', String(parseInt(localStorage.getItem('fcTotalGood') || '0', 10) + 1));
+            } else {
+                fcBad++;
+                localStorage.setItem('fcTotalBad', String(parseInt(localStorage.getItem('fcTotalBad') || '0', 10) + 1));
+            }
+            fcIndex++;
+            if (fcIndex < flashcards.length) {
+                fcRenderCard();
+            } else {
+                fcFinish();
+            }
+        }
+
+        function fcFinish() {
+            fcDone = true;
+            document.getElementById('fc-scene').style.display = 'none';
+            document.getElementById('fc-controls').style.display = 'none';
+            const total = fcGood + fcBad;
+            const pct = Math.round(fcGood / total * 100);
+            let msg = pct >= 80 ? ' ¡Excelente! Dominas el tema.' : (pct >= 60 ? '💪 ¡Bien! Repasa las que fallaste.' :
+                '📚 Necesitas repasar: vuelve a la pestaña Conceptos.');
+            const sum = document.getElementById('fc-summary');
+            sum.innerHTML = '<strong>📊 Resumen de la sesión:</strong><br>✅ Buenas: ' + fcGood + ' &nbsp; ❌ Malas: ' + fcBad +
+                '<br>Precisión: <strong>' + pct + '%</strong><br>' + msg;
+            sum.classList.add('show');
+            fcUpdateStats();
+        }
+
+        function resetFlashcards() {
+            fcIndex = 0;
+            fcGood = 0;
+            fcBad = 0;
+            fcDone = false;
+            document.getElementById('fc-scene').style.display = 'block';
+            document.getElementById('fc-controls').style.display = 'flex';
+            document.getElementById('fc-summary').classList.remove('show');
+            fcRenderCard();
+        }
+
+        function borrarHistorial() {
+            localStorage.removeItem('fcTotalGood');
+            localStorage.removeItem('fcTotalBad');
+            fcUpdateStats();
+        }
+
+        // ============================================================
+        //  HERRAMIENTAS: Masa atómica promedio
+        // ============================================================
+        function calcularMasaPromedio() {
+            const m1 = parseFloat(document.getElementById('masa1').value);
+            const a1 = parseFloat(document.getElementById('abund1').value);
+            const m2 = parseFloat(document.getElementById('masa2').value);
+            const a2 = parseFloat(document.getElementById('abund2').value);
+            const res = document.getElementById('resultado-masa');
+            if (isNaN(m1) || isNaN(a1) || isNaN(m2) || isNaN(a2) || (a1 + a2) !== 100) {
+                res.innerHTML = '<span style="color:#f44336;">⚠️ Verifica que las abundancias sumen 100 % y todos los campos estén completos.</span>';
+                res.classList.add('show');
+                return;
+            }
+            const promedio = (m1 * a1 + m2 * a2) / 100;
+            res.innerHTML = '<strong>Masa atómica promedio:</strong> ' + promedio.toFixed(4) + ' uma';
+            res.classList.add('show');
+        }
+
+        // ============================================================
+        //  HERRAMIENTAS: Partículas subatómicas
+        // ============================================================
+        function calcularParticulas() {
+            const Z = parseInt(document.getElementById('z-isotopo').value);
+            const A = parseInt(document.getElementById('a-isotopo').value);
+            const carga = parseInt(document.getElementById('carga-isotopo').value) || 0;
+            const res = document.getElementById('resultado-particulas');
+            if (isNaN(Z) || isNaN(A) || Z < 1 || A < Z) {
+                res.innerHTML = '<span style="color:#f44336;">⚠️ Ingresa valores válidos (Z ≥ 1, A ≥ Z).</span>';
+                res.classList.add('show');
+                return;
+            }
+            const protones = Z;
+            const neutrones = A - Z;
+            const electrones = Z - carga; // si carga positiva, pierde electrones
+            res.innerHTML =
+                '<strong>Resultado:</strong><br>🔹 Protones: ' + protones +
+                '<br>🔸 Neutrones: ' + neutrones +
+                '<br>🔹 Electrones: ' + electrones +
+                '<br><span style="display:block;margin-top:0.5rem;font-size:0.9rem;color:#555;">(Para ion, ajuste la carga.)</span>';
+            res.classList.add('show');
+        }
+
+        // ============================================================
+        //  HERRAMIENTAS: Buscador de elementos (datos básicos)
+        // ============================================================
+        const elementos = {
+            1: { simbolo: 'H', nombre: 'Hidrógeno', tipo: 'No metal' },
+            2: { simbolo: 'He', nombre: 'Helio', tipo: 'Gas noble' },
+            3: { simbolo: 'Li', nombre: 'Litio', tipo: 'Metal' },
+            4: { simbolo: 'Be', nombre: 'Berilio', tipo: 'Metal' },
+            5: { simbolo: 'B', nombre: 'Boro', tipo: 'Metaloide' },
+            6: { simbolo: 'C', nombre: 'Carbono', tipo: 'No metal' },
+            7: { simbolo: 'N', nombre: 'Nitrógeno', tipo: 'No metal' },
+            8: { simbolo: 'O', nombre: 'Oxígeno', tipo: 'No metal' },
+            9: { simbolo: 'F', nombre: 'Flúor', tipo: 'No metal' },
+            10: { simbolo: 'Ne', nombre: 'Neón', tipo: 'Gas noble' },
+            11: { simbolo: 'Na', nombre: 'Sodio', tipo: 'Metal' },
+            12: { simbolo: 'Mg', nombre: 'Magnesio', tipo: 'Metal' },
+            13: { simbolo: 'Al', nombre: 'Aluminio', tipo: 'Metal' },
+            14: { simbolo: 'Si', nombre: 'Silicio', tipo: 'Metaloide' },
+            15: { simbolo: 'P', nombre: 'Fósforo', tipo: 'No metal' },
+            16: { simbolo: 'S', nombre: 'Azufre', tipo: 'No metal' },
+            17: { simbolo: 'Cl', nombre: 'Cloro', tipo: 'No metal' },
+            18: { simbolo: 'Ar', nombre: 'Argón', tipo: 'Gas noble' },
+            19: { simbolo: 'K', nombre: 'Potasio', tipo: 'Metal' },
+            20: { simbolo: 'Ca', nombre: 'Calcio', tipo: 'Metal' },
+            26: { simbolo: 'Fe', nombre: 'Hierro', tipo: 'Metal' },
+            29: { simbolo: 'Cu', nombre: 'Cobre', tipo: 'Metal' },
+            47: { simbolo: 'Ag', nombre: 'Plata', tipo: 'Metal' },
+            53: { simbolo: 'I', nombre: 'Yodo', tipo: 'No metal' },
+            79: { simbolo: 'Au', nombre: 'Oro', tipo: 'Metal' },
+            82: { simbolo: 'Pb', nombre: 'Plomo', tipo: 'Metal' },
+        };
+
+        function buscarElemento() {
+            const Z = parseInt(document.getElementById('z-buscar').value);
+            const res = document.getElementById('resultado-elemento');
+            if (isNaN(Z) || Z < 1 || Z > 118) {
+                res.innerHTML = '<span style="color:#f44336;">⚠️ Ingresa un número entre 1 y 118.</span>';
+                res.classList.add('show');
+                return;
+            }
+            const el = elementos[Z];
+            if (el) {
+                res.innerHTML = '<strong>Elemento encontrado:</strong><br>' +
+                    '🔹 Z = ' + Z +
+                    '<br>🔸 Símbolo: <strong>' + el.simbolo + '</strong>' +
+                    '<br>🔹 Nombre: ' + el.nombre +
+                    '<br>🔸 Clasificación: ' + el.tipo;
+            } else {
+                res.innerHTML = '⚠️ No se encontró información para Z = ' + Z +
+                    '. Consulta la tabla periódica completa.';
+            }
+            res.classList.add('show');
+        }
+
+        // ============================================================
+        //  QUIZ (15 preguntas, se muestran 5 al azar)
+        // ============================================================
+        const preguntasBase = [{
+            pregunta: '¿Qué estudia la química?',
+            opciones: ['La materia y sus transformaciones', 'Los seres vivos', 'El universo', 'Los números'],
+            correcta: 0,
+            explicacion: 'La química es la ciencia que estudia la materia, su composición, estructura y transformaciones.'
+        }, {
+            pregunta: '¿Cuál es la carga del protón?',
+            opciones: ['+1', '-1', '0', '+2'],
+            correcta: 0,
+            explicacion: 'El protón tiene carga positiva (+1).'
+        }, {
+            pregunta: '¿Qué partícula subatómica no tiene carga?',
+            opciones: ['Protón', 'Electrón', 'Neutrón', 'Ninguna'],
+            correcta: 2,
+            explicacion: 'El neutrón es eléctricamente neutro (carga 0).'
+        }, {
+            pregunta: 'El número atómico (Z) es igual a:',
+            opciones: ['Número de neutrones', 'Número de protones', 'Número de electrones en un ion', 'Masa del átomo'],
+            correcta: 1,
+            explicacion: 'Z es el número de protones en el núcleo, que identifica al elemento.'
+        }, {
+            pregunta: '¿Qué son los isótopos?',
+            opciones: ['Átomos con diferente Z', 'Átomos con mismo Z pero diferente A',
+                'Átomos con mismo A pero diferente Z', 'Átomos con diferente carga'
+            ],
+            correcta: 1,
+            explicacion: 'Isótopos: mismo número de protones (Z) pero diferente número de neutrones (distinto A).'
+        }, {
+            pregunta: '¿Cómo se calcula el número de neutrones?',
+            opciones: ['A + Z', 'A - Z', 'Z - A', 'A × Z'],
+            correcta: 1,
+            explicacion: 'Neutrones = Número de masa (A) - Número atómico (Z).'
+        }, {
+            pregunta: '¿Cuál de estos es un metaloide?',
+            opciones: ['Sodio (Na)', 'Silicio (Si)', 'Oxígeno (O)', 'Argón (Ar)'],
+            correcta: 1,
+            explicacion: 'El silicio (Si) es un metaloide, semiconductor, con propiedades intermedias.'
+        }, {
+            pregunta: 'Los gases nobles se caracterizan por:',
+            opciones: ['Ser muy reactivos', 'Tener capa de valencia completa', 'Ser buenos conductores',
+                'Formar óxidos básicos'
+            ],
+            correcta: 1,
+            explicacion: 'Los gases nobles tienen su capa de valencia completa, lo que los hace muy estables y poco reactivos.'
+        }, {
+            pregunta: '¿Cuál es la masa atómica promedio del cloro si tiene dos isótopos: ³⁵Cl (34.9689 u, 75.78%) y ³⁷Cl (36.9659 u, 24.22%)?',
+            opciones: ['35.45 u', '36.00 u', '34.97 u', '35.97 u'],
+            correcta: 0,
+            explicacion: 'Promedio = (34.9689×75.78 + 36.9659×24.22)/100 ≈ 35.45 u.'
+        }, {
+            pregunta: '¿Qué elemento es esencial para la formación de hemoglobina?',
+            opciones: ['Calcio (Ca)', 'Hierro (Fe)', 'Sodio (Na)', 'Potasio (K)'],
+            correcta: 1,
+            explicacion: 'El hierro es componente de la hemoglobina, esencial para el transporte de oxígeno.'
+        }, {
+            pregunta: '¿Quién propuso el principio de incertidumbre?',
+            opciones: ['Bohr', 'De Broglie', 'Heisenberg', 'Schrödinger'],
+            correcta: 2,
+            explicacion: 'Werner Heisenberg formuló el principio de incertidumbre en 1927.'
+        }, {
+            pregunta: '¿Qué es un orbital atómico?',
+            opciones: ['La trayectoria del electrón', 'Región con alta probabilidad de encontrar un electrón',
+                'El núcleo del átomo', 'Una partícula subatómica'
+            ],
+            correcta: 1,
+            explicacion: 'Orbital: región del espacio alrededor del núcleo con alta probabilidad de encontrar un electrón.'
+        }, {
+            pregunta: '¿Cuántos electrones caben como máximo en un orbital?',
+            opciones: ['1', '2', '3', '4'],
+            correcta: 1,
+            explicacion: 'Cada orbital alberga como máximo 2 electrones con spines opuestos.'
+        }, {
+            pregunta: '¿Cuál de estos es un no metal?',
+            opciones: ['Cobre (Cu)', 'Nitrógeno (N)', 'Plata (Ag)', 'Oro (Au)'],
+            correcta: 1,
+            explicacion: 'El nitrógeno (N) es un no metal, gas a temperatura ambiente.'
+        }, {
+            pregunta: 'El yodo-131 se usa en medicina para:',
+            opciones: ['Imágenes del cerebro', 'Tratamiento de tiroides', 'Análisis de sangre',
+                'Prótesis dentales'
+            ],
+            correcta: 1,
+            explicacion: 'El yodo-131 se emplea en el diagnóstico y tratamiento de enfermedades tiroideas.'
+        }];
+
+        let preguntasActuales = [];
+        let quizIndex = 0;
+        let quizAciertos = 0;
+        let quizRespondidas = 0;
+
+        function cargarQuiz() {
+            // Seleccionar 5 preguntas aleatorias de la base
+            const shuffled = [...preguntasBase];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            preguntasActuales = shuffled.slice(0, 5);
+            quizIndex = 0;
+            quizAciertos = 0;
+            quizRespondidas = 0;
+            mostrarPregunta();
+        }
+
+        function mostrarPregunta() {
+            const container = document.getElementById('quiz-container');
+            if (quizIndex >= preguntasActuales.length) {
+                // Fin del quiz
+                const total = preguntasActuales.length;
+                const pct = Math.round(quizAciertos / total * 100);
+                let msg = pct >= 80 ? '🎉 ¡Excelente!' : (pct >= 60 ? '💪 ¡Bien, sigue practicando!' :
+                    '📚 Revisa los conceptos y vuelve a intentarlo.');
+                container.innerHTML = `
+                    <div class="quiz-container" style="text-align:center;">
+                        <h3 style="color:var(--upch-gold);">¡Ronda completada!</h3>
+                        <p style="font-size:1.5rem;">✅ ${quizAciertos} de ${total} correctas</p>
+                        <p>Precisión: ${pct}%</p>
+                        <p>${msg}</p>
+                        <button class="calc-button" onclick="cargarQuiz()" style="margin-top:1.5rem;">🔄 Nueva ronda</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = preguntasActuales[quizIndex];
+            const opcionesHtml = q.opciones.map((opt, idx) =>
+                `<button class="quiz-option" onclick="responderPregunta(${quizIndex}, ${idx}, this)">${opt}</button>`
+            ).join('');
+
+            container.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <span>Pregunta ${quizIndex+1} de ${preguntasActuales.length}</span>
+                        <span>✅ ${quizAciertos} correctas</span>
+                    </div>
+                    <div class="quiz-question">${q.pregunta}</div>
+                    <div class="quiz-options">${opcionesHtml}</div>
+                    <div class="quiz-feedback" id="feedback-actual"></div>
+                </div>
+            `;
+        }
+
+        function responderPregunta(idx, opcionSeleccionada, btn) {
+            const q = preguntasActuales[idx];
+            const fb = document.getElementById('feedback-actual');
+            const opts = btn.parentElement.querySelectorAll('.quiz-option');
+            // Deshabilitar todas las opciones
+            opts.forEach(o => o.disabled = true);
+
+            const correcta = q.correcta;
+            if (opcionSeleccionada === correcta) {
+                btn.classList.add('correct');
+                quizAciertos++;
+                fb.innerHTML = '<span style="color:#4caf50;font-weight:bold;">✅ ¡Correcto!</span> ' + q.explicacion;
+                fb.style.background = '#e8f5e9';
+            } else {
+                btn.classList.add('incorrect');
+                opts[correcta].classList.add('correct');
+                fb.innerHTML = '<span style="color:#f44336;font-weight:bold;">❌ Incorrecto</span> ' + q.explicacion;
+                fb.style.background = '#ffebee';
+            }
+            fb.style.display = 'block';
+            quizRespondidas++;
+
+            // Avanzar después de 2 segundos
+            setTimeout(() => {
+                quizIndex++;
+                mostrarPregunta();
+            }, 2000);
+        }
+
+        // ============================================================
+        //  INICIALIZACIÓN
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            fcRenderCard();
+            cargarQuiz();
+            // Mostrar la primera subpestaña de herramientas por defecto
+            document.querySelector('#herramientas-tabs .tab.active')?.click();
+        });
+    </script>
+</body>
+</html>
+```
